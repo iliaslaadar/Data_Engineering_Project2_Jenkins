@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <center><h1><font>Sentiment analysis</font></h1></center>
+
+        <hr />
+            <form method="POST" action="">
+                <center>
+
+                    <label>Enter a text to analyse :</label>
+
+                    <br><br>
+
+                    <div>
+                        <textarea type="text"  name="text"  cols="50" rows="5" ></textarea>
+                        <input type="hidden" name="form_type" value="analyse"/>
+                    </div>
+
+                    <input type="submit"/>
+
+                </center>
+
+                <center>
+                    <p>
+                        <div>
+                            <span style="font-weight:bold;">Tweet : </span>{{text}}<br><br>
+                        </div>
+                        <div style="font-weight:bold;">
+                            TOP 20 similar tweets:
+                        </div>
+                        <br>
+                        {% for pred in prediction %}
+                        <tr>
+                            <tr> Similarity = {{pred[1]}} </tr>
+                            <br>
+                            <tr> Tweet = "{{pred[0]}}" </tr>
+                            <br><br>
+                        </tr>
+                        {% endfor %}
+                        </div>
+                    </p>
+                </center>
+            </form>
+        <hr />
+        
+        <br>
+        
+        <div>Data engineering project - Mohamed ABDELAZIZ / Ilias LAADAR</div>
+
+    </body>
+</html>
