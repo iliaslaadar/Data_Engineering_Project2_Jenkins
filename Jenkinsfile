@@ -1,15 +1,13 @@
 pipeline{
     agent any
     stages{
-        stage('APP') {
+        stage('TEST') {
             steps{
                 echo 'Run the app:'
                 echo env.BRANCH_NAME
                 sh 'python3 app.py &'
                 sh "sleep 10"
             }
-        }
-        stage('TEST') {
             BRANCH_NAME = 'feature_tests'
             when{
                 expression{
