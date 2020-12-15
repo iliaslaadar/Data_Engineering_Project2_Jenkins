@@ -6,7 +6,11 @@ pipeline{
                 echo 'Run the app:'
                 sh 'python3 app.py &'
                 sh "sleep 10"
-                script{env.BRANCH_NAME = 'feature_tests'}
+                script{
+                    env.BRANCH_NAME = 'feature_tests'
+                    sh 'git checkout feature_tests'
+                }
+                //script{env.BRANCH_NAME = 'feature_tests'}
             }
         }
         stage('TEST') {
