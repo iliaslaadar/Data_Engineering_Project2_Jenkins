@@ -1,16 +1,11 @@
 pipeline{
     agent any
     stages{
-        stage('BUILD') {
+        stage('APP') {
             steps{
                 echo 'Run the app:'
-                sh 'docker build -t projet_tweet .'
-            }
-        }
-        stage('RUN') {
-            steps{
-                echo 'Run the app:'
-                sh 'docker run -it -d -p 5000:5000 --name projet_tweet_c projet_tweet'
+                sh 'python3 app.py &'
+                sh "sleep 10"
             }
         }
         stage('TEST') {
@@ -22,9 +17,8 @@ pipeline{
         }
         stage('STOP') {
             steps{
-                script{
-                    
-                }
+                echo 'Exit the app:'
+                sh 'kill -INT $(lsof -t -i :5000)'
             }
         }
     }
