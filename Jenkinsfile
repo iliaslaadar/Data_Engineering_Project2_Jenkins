@@ -11,7 +11,7 @@ pipeline{
         }
         stage('TEST') {
             steps{
-                script {env.BRANCH_NAME = feature_tests}
+                env.BRANCH_NAME = feature_tests
                 echo env.BRANCH_NAME
                 echo 'Test the app:'
                 //sh 'git checkout feature_tests'
