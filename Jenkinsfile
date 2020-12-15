@@ -8,9 +8,11 @@ pipeline{
             }
         }
         stage('RUN') {
-            steps{
-                echo 'Test the app:'
-                sh 'docker run -p 5000:5000 project2'
+            parallel{
+                steps{
+                    echo 'Test the app:'
+                    sh 'docker run -p 5000:5000 project2'
+                }
             }
         }
         stage('STOP') {
