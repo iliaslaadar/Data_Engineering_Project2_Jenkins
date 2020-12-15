@@ -10,12 +10,11 @@ pipeline{
             }
         }
         stage('TEST') {
-                when { triggeredBy 'APP' }
-                steps{
-                    echo 'Test the app:'
-                    sh 'python3 Integration_test.py'
-                    sh 'python3 Unit_test.py'
-                }
+            when { triggeredBy 'APP' }
+            steps{
+                echo 'Test the app:'
+                sh 'python3 Integration_test.py'
+                sh 'python3 Unit_test.py'
             }
         }
         stage('STOP') {
