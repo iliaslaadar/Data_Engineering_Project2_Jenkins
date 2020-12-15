@@ -5,7 +5,7 @@ pipeline{
             steps{
                 echo 'Run the app:'
                 //sh 'git checkout feature_app'
-                //sh 'env.BRANCH_NAME'
+                echo env.BRANCH_NAME
                 sh 'python3 app.py &'
                 sh "sleep 10"
             }
