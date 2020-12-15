@@ -7,14 +7,12 @@ pipeline{
                 echo env.BRANCH_NAME
                 sh 'python3 app.py &'
                 sh "sleep 10"
-            }
-            BRANCH_NAME = 'feature_tests'
-            when{
-                expression{
-                    BRANCH_NAME == 'feature_tests'
+                script{BRANCH_NAME = 'feature_tests'}
+                when{
+                    expression{
+                        BRANCH_NAME == 'feature_tests'
+                    }
                 }
-            }
-            steps{
                 echo env.BRANCH_NAME
                 echo 'Test the app:'
                 //sh 'git checkout feature_tests'
