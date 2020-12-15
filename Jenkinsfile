@@ -2,6 +2,7 @@ pipeline{
     agent any
     stages{
         stage('APP') {
+            BRANCH_NAME = 'feature_app'
             steps{
                 echo 'Run the app:'
                 sh 'python3 app.py &'
