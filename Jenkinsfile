@@ -6,23 +6,7 @@ pipeline{
             steps{
                 echo 'Run the app:'
                 sh 'python3 app.py &'
-                sh "sleep 10"
-            }
-        }
-        stage('TEST') {
-            steps{
-                echo 'Test the app:'
-                sh 'git checkout develop'
-                echo 'devvvvvv'
-                sh 'git checkout feature_tests'
-                echo 'ooooooooo'
-                sh 'python3 Unit_test.py'
-            }
-        }
-        stage('STOP') {
-            steps{
-                echo 'Exit the app:'
-                sh 'kill -INT $(lsof -t -i :5000)'
+                sh 'sleep 10'
             }
         }
     }
