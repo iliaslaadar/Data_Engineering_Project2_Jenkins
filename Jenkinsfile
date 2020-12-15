@@ -2,6 +2,11 @@ pipeline{
     agent any
     stages{
         stage('APP') {
+            when{
+                expression{
+                    BRANCH_NAME == 'feature_tests'
+                }
+            }
             steps{
                 echo 'Run the app:'
                 echo env.BRANCH_NAME
