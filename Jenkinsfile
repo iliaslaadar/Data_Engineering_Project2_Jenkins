@@ -12,7 +12,6 @@ pipeline{
         stage('TEST') {
             steps{
                 echo 'Test the app:'
-                sh 'git checkout -f feature_tests'
                 sh 'python3 Unit_test.py'
             }
         }
