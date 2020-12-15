@@ -11,7 +11,7 @@ pipeline{
                     //sh 'git checkout feature_tests'
                     sh 'git remote update'
                     sh 'git fetch'
-                    sh 'git checkout feature_tests'
+                    sh 'git checkout */feature_tests'
                 }
                 
                 //script{env.BRANCH_NAME = 'feature_tests'}
