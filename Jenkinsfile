@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('APP') {
             steps{
-                BRANCH_NAME = 'feature_app'
+                //BRANCH_NAME = 'feature_app'
                 echo 'Run the app:'
                 sh 'python3 app.py &'
                 sh "sleep 10"
