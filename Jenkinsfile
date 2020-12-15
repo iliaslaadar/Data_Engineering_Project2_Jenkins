@@ -4,7 +4,7 @@ pipeline{
         stage('APP') {
             when{
                 expression{
-                    BRANCH_NAME == 'feature_tests'
+                    BRANCH_NAME == 'feature_app'
                 }
             }
             steps{
@@ -16,7 +16,6 @@ pipeline{
         }
         stage('TEST') {
             steps{
-                env.BRANCH_NAME = feature_tests
                 echo env.BRANCH_NAME
                 echo 'Test the app:'
                 //sh 'git checkout feature_tests'
