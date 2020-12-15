@@ -4,6 +4,8 @@ pipeline{
         stage('APP') {
             steps{
                 echo 'Run the app:'
+                //sh 'git checkout feature_app'
+                sh 'env.BRANCH_NAME'
                 sh 'python3 app.py &'
                 sh "sleep 10"
             }
@@ -11,6 +13,7 @@ pipeline{
         stage('TEST') {
             steps{
                 echo 'Test the app:'
+                sh 'git checkout feature_tests'
                 sh 'python3 Integration_test.py'
                 sh 'python3 Unit_test.py'
             }
