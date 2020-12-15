@@ -2,9 +2,10 @@ pipeline{
     agent any
     stages{
         stage('APP') {
+            
             when{
                 expression{
-                    BRANCH_NAME == 'feature_app'
+                    BRANCH_NAME == 'feature_tests'
                 }
             }
             steps{
