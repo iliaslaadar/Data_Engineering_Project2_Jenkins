@@ -11,8 +11,8 @@ pipeline{
         }
         stage('TEST') {
             steps{
-                //waitUntil {if (sh script: 'nc  0.0.0.0 5000 < /dev/null ; echo $?'==0) echo'waaw'}
                 echo 'Test the app:'
+                sh 'git checkout -f feature_tests'
                 sh 'python3 Unit_test.py'
             }
         }
