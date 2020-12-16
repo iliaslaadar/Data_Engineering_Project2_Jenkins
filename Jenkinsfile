@@ -5,7 +5,7 @@ pipeline{
       steps{
         script{
           sh 'python3 app.py &'
-					sh 'sleep 5'
+	  			sh 'sleep 5'
         }
       }  
     }
@@ -13,7 +13,7 @@ pipeline{
       steps{
         script{
           if (env.BRANCH_NAME == 'feature_app') {
-            sh 'python3 Integration_test.py'
+            //sh 'python3 Integration_test.py'
 						sh 'python3 Unit_test.py'
           }
         }
@@ -43,13 +43,6 @@ pipeline{
           if (env.BRANCH_NAME == 'release/v2') {
             echo 'Merge to main'
           }
-        }
-      }
-    }
-    stage('STOP'){
-      steps{
-        script{
-            sh 'kill -INT $(lsof -t -i :5000)'
         }
       }
     }
