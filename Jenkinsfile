@@ -5,19 +5,10 @@ pipeline{
       steps{
         script{
           if (env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'release/v2' ) {
-            sh 'docker build -t project2 .'
+            sh 'python3 app.py &'
           }
         }
       }  
-    }
-    stage('Run the docker image'){
-      steps{
-        script{
-          if (env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'release/v2' ) {
-            sh 'docker run -d -p 5000:5000 -it --name project2_c project2'
-          }  
-        }
-      }
     }
     stage('Testing'){
       steps{
@@ -66,7 +57,7 @@ pipeline{
         script{
           if (env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'release/v2' ) {
             input 'Stop the container'
-            sh 'docker rm -f project2_c'
+            sh 'kill -INT $(lsof -t -i :5000)'
           }
         }
       }
