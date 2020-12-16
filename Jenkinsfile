@@ -46,12 +46,5 @@ pipeline{
         }
       }
     }
-    stage('STOP'){
-      steps{
-        script{
-            sh 'kill -INT $(lsof -t -i :5000)'
-        }
-      }
-    }
   }
 }
