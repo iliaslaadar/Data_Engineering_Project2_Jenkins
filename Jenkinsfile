@@ -1,17 +1,19 @@
 pipeline{
     agent any
     stages{
-//        stage('BUILD') {
-//            steps{
-//                echo 'Run the app:'
-//                sh 'docker build -t project2 .'
-//            }
-//        }
-        stage('RUN') {
-                steps{
-                    echo 'Test the app:'
-                    sh 'docker run -p 5000:5000 project2'
-                }
+        stage('APP') {
+            steps{
+                echo 'Run the app:'
+                sh 'python3 app.py &'
+                sh "sleep 10"
+            }
+        }
+        stage('TEST') {
+            steps{
+                echo 'Test the app:'
+                sh 'python3 Integration_test.py'
+                sh 'python3 Unit_test.py'
+            }
         }
         stage('STOP') {
             steps{
