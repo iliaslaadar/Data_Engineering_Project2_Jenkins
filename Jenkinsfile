@@ -1,40 +1,34 @@
 pipeline{
-  agent any
+	agent any
   stages {
-    stage('Build the Flask application'){
+    stage('RUN'){
       steps{
         script{
-          if (env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'release/v2' ) {
-            sh 'python3 app.py &'
-          }
+          sh 'python3 app.py &'
+					sh 'sleep 5'
         }
       }  
     }
-    stage('Testing'){
+    stage('TEST'){
       steps{
         script{
           if (env.BRANCH_NAME == 'feature_app') {
-            sh 'python3 Unit_test.py '
-          }
-          else {
-              echo 'Should be in the unittest branch to do the test !'
+            sh 'python3 Integration_test.py'
+						sh 'python3 Unit_test.py'
           }
         }
       }
     }
-    stage('Release'){
+    stage('PUSH'){
       steps{
         script{
           if (env.BRANCH_NAME == 'develop') {
-            echo 'Push to release '
-          }
-          else if (env.BRANCH_NAME == 'release/v2') {
-            echo 'Already in release'
+            echo 'Push to release'
           }
         }  
       }
     }
-    stage('User acceptance for pushing to main'){
+    stage('ACCEPTANCE'){
       steps{
         script{
           if (env.BRANCH_NAME == 'release/v2' ) {
@@ -43,7 +37,7 @@ pipeline{
         }
       }
     }
-    stage('Merging to main'){
+    stage('MERGE'){
       steps{
         script{
           if (env.BRANCH_NAME == 'release/v2') {
@@ -52,13 +46,10 @@ pipeline{
         }
       }
     }
-    stage('Docker images down'){
+    stage('STOP'){
       steps{
         script{
-          if (env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'release/v2' ) {
-            input 'Stop the container'
             sh 'kill -INT $(lsof -t -i :5000)'
-          }
         }
       }
     }
