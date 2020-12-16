@@ -5,7 +5,7 @@ pipeline{
       steps{
         script{
           sh 'python3 app.py &'
-	  			sh 'sleep 5'
+	  			sh 'sleep 10'
         }
       }  
     }
