@@ -13,7 +13,7 @@ pipeline{
       steps{
         script{
           if (env.BRANCH_NAME == 'feature_app') {
-            sh 'python3 Integration_test.py'
+            //sh 'python3 Integration_test.py'
 						sh 'python3 Unit_test.py'
           }
         }
