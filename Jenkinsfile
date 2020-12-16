@@ -15,11 +15,5 @@ pipeline{
                 sh 'python3 Unit_test.py'
             }
         }
-        stage('STOP') {
-            steps{
-                echo 'Exit the app:'
-                sh 'kill -INT $(lsof -t -i :5000)'
-            }
-        }
     }
 }
