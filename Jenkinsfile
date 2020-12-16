@@ -17,6 +17,7 @@ pipeline{
         }
         stage('MERGE') {
             steps{
+                sh 'git checkout main'
                 sh 'git checkout -b release/v3'
                 sh 'git push'
                 sh 'git merge develop'
