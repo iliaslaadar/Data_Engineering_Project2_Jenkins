@@ -1,12 +1,12 @@
 pipeline{
     agent any
     stages{
-        stage('BUILD') {
-            steps{
-                echo 'Run the app:'
-                sh 'docker build -t project2 .'
-            }
-        }
+//        stage('BUILD') {
+//            steps{
+//                echo 'Run the app:'
+//                sh 'docker build -t project2 .'
+//            }
+//        }
         stage('RUN') {
                 steps{
                     echo 'Test the app:'
